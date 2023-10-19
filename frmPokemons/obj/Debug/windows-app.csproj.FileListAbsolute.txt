@@ -1,0 +1,17 @@
+A:\Archivos\Cristian\Curso de C# nivel 2\Ejemplos_ado_NET\frmPokemons\bin\Debug\frmPokemons.exe.config
+A:\Archivos\Cristian\Curso de C# nivel 2\Ejemplos_ado_NET\frmPokemons\bin\Debug\frmPokemons.exe
+A:\Archivos\Cristian\Curso de C# nivel 2\Ejemplos_ado_NET\frmPokemons\bin\Debug\frmPokemons.pdb
+A:\Archivos\Cristian\Curso de C# nivel 2\Ejemplos_ado_NET\frmPokemons\obj\Debug\windows-app.csproj.AssemblyReference.cache
+A:\Archivos\Cristian\Curso de C# nivel 2\Ejemplos_ado_NET\frmPokemons\obj\Debug\windows-app.csproj.SuggestedBindingRedirects.cache
+A:\Archivos\Cristian\Curso de C# nivel 2\Ejemplos_ado_NET\frmPokemons\obj\Debug\frmPokemons.frmPokemons.resources
+A:\Archivos\Cristian\Curso de C# nivel 2\Ejemplos_ado_NET\frmPokemons\obj\Debug\frmPokemons.Properties.Resources.resources
+A:\Archivos\Cristian\Curso de C# nivel 2\Ejemplos_ado_NET\frmPokemons\obj\Debug\windows-app.csproj.GenerateResource.cache
+A:\Archivos\Cristian\Curso de C# nivel 2\Ejemplos_ado_NET\frmPokemons\obj\Debug\windows-app.csproj.CoreCompileInputs.cache
+A:\Archivos\Cristian\Curso de C# nivel 2\Ejemplos_ado_NET\frmPokemons\obj\Debug\frmPokemons.exe
+A:\Archivos\Cristian\Curso de C# nivel 2\Ejemplos_ado_NET\frmPokemons\obj\Debug\frmPokemons.pdb
+A:\Archivos\Cristian\Curso de C# nivel 2\Ejemplos_ado_NET\frmPokemons\bin\Debug\Dominio.dll
+A:\Archivos\Cristian\Curso de C# nivel 2\Ejemplos_ado_NET\frmPokemons\bin\Debug\Negocio.dll
+A:\Archivos\Cristian\Curso de C# nivel 2\Ejemplos_ado_NET\frmPokemons\bin\Debug\Dominio.pdb
+A:\Archivos\Cristian\Curso de C# nivel 2\Ejemplos_ado_NET\frmPokemons\bin\Debug\Negocio.pdb
+A:\Archivos\Cristian\Curso de C# nivel 2\Ejemplos_ado_NET\frmPokemons\obj\Debug\windows-app.csproj.CopyComplete
+A:\Archivos\Cristian\Curso de C# nivel 2\Ejemplos_ado_NET\frmPokemons\obj\Debug\frmPokemons.frmAltaPokemon.resources

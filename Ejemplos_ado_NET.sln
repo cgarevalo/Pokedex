@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "windows-app", "frmPokemons\windows-app.csproj", "{66BBDBEE-E212-4D2A-87E0-56A7465FC9C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio", "Dominio\Dominio.csproj", "{4E94695C-D766-495B-AA26-B2E8DF117DF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio", "Negocio\Negocio.csproj", "{C7B7B46F-F323-4DE1-9D1B-92571D56B7EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66BBDBEE-E212-4D2A-87E0-56A7465FC9C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66BBDBEE-E212-4D2A-87E0-56A7465FC9C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66BBDBEE-E212-4D2A-87E0-56A7465FC9C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66BBDBEE-E212-4D2A-87E0-56A7465FC9C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E94695C-D766-495B-AA26-B2E8DF117DF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E94695C-D766-495B-AA26-B2E8DF117DF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E94695C-D766-495B-AA26-B2E8DF117DF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E94695C-D766-495B-AA26-B2E8DF117DF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7B7B46F-F323-4DE1-9D1B-92571D56B7EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7B7B46F-F323-4DE1-9D1B-92571D56B7EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7B7B46F-F323-4DE1-9D1B-92571D56B7EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7B7B46F-F323-4DE1-9D1B-92571D56B7EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {995A56B7-26DC-45AC-986E-DD84043C0D3B}
+	EndGlobalSection
+EndGlobal
