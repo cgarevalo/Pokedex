@@ -23,6 +23,17 @@ namespace frmPokemons
 
         private void frmPokemons_Load(object sender, EventArgs e)
         {
+            Cargar();
+        }
+
+        private void dgvPokemons_SelectionChanged(object sender, EventArgs e)
+        {
+            Pokemon selecionado = (Pokemon)dgvPokemons.CurrentRow.DataBoundItem;
+            CargarImagen(selecionado.UrlImagen);
+        }
+
+        private void Cargar()
+        {
             PokemonNegocio negocio = new PokemonNegocio();
             try
             {
@@ -34,15 +45,8 @@ namespace frmPokemons
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
             }
-        }
-
-        private void dgvPokemons_SelectionChanged(object sender, EventArgs e)
-        {
-            Pokemon selecionado = (Pokemon)dgvPokemons.CurrentRow.DataBoundItem;
-            CargarImagen(selecionado.UrlImagen);
         }
 
         private void CargarImagen(string imagen)
@@ -62,6 +66,7 @@ namespace frmPokemons
         {
             frmAltaPokemon alta = new frmAltaPokemon();
             alta.ShowDialog();
+            Cargar();
         }
     }
 }
