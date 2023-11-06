@@ -34,6 +34,7 @@ namespace frmPokemons
                 poke.Numero = int.Parse(txtNumero.Text);
                 poke.Nombre = txtNombre.Text;
                 poke.Descripcion = txtDescripcion.Text;
+                poke.UrlImagen = txtUrlImagen.Text;
                 poke.Tipo = (Elemento)cboTipo.SelectedItem;
                 poke.Debilidad = (Elemento)cboDebilidad.SelectedItem;
 
@@ -72,6 +73,23 @@ namespace frmPokemons
             {
 
                 MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void txtUrlImagen_Leave(object sender, EventArgs e)
+        {
+            CargarImagen(txtUrlImagen.Text);
+        }
+        private void CargarImagen(string imagen)
+        {
+            try
+            {
+                pbxPokemon.Load(imagen);
+            }
+            catch (Exception ex)
+            {
+
+                pbxPokemon.Load("https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg");
             }
         }
     }

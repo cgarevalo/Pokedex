@@ -62,11 +62,12 @@ namespace Negocio
             {
                 //Dos formas de cargar la consulta
 
-                datos.SetearConsulta("INSERT INTO POKEMONS (Numero, Nombre, Descripcion, Activo, IdTipo, IdDebilidad) VALUES (" + nuevo.Numero + ", '" + nuevo.Nombre + "', '" + nuevo.Descripcion + "', 1, @idTipo, @idDebilidad)");
+                datos.SetearConsulta("INSERT INTO POKEMONS (Numero, Nombre, Descripcion, Activo, IdTipo, IdDebilidad, UrlImagen) VALUES (" + nuevo.Numero + ", '" + nuevo.Nombre + "', '" + nuevo.Descripcion + "', 1, @idTipo, @idDebilidad, @urlImagen)");
 
                 //El método SetearParametro carga los últimos 2 valores agregados a la consulta (IdTipo, IdDebilidad)
                 datos.SetearParametro("@idTipo", nuevo.Tipo.Id);
                 datos.SetearParametro("@idDebilidad", nuevo.Debilidad.Id);
+                datos.SetearParametro("@urlImagen", nuevo.UrlImagen);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
