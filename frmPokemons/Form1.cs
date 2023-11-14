@@ -77,5 +77,28 @@ namespace frmPokemons
             modificar.ShowDialog();
             Cargar();
         }
+
+        private void btnEliminarFisico_Click(object sender, EventArgs e)
+        {
+            PokemonNegocio negocio = new PokemonNegocio();
+            Pokemon seleccionado;
+            try
+            {                                             //pregunta              //titulo
+                DialogResult resultado = MessageBox.Show("¿Quiere eliminarlo?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning); //El MessageBoxIcon.Warning es opcional
+                                                                    //Solo muestra un icono
+                
+                if (resultado == DialogResult.Yes)
+                {
+                    seleccionado = (Pokemon)dgvPokemons.CurrentRow.DataBoundItem;
+                    negocio.Eliminar(seleccionado.Id);
+                    Cargar();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 }
