@@ -40,8 +40,8 @@ namespace frmPokemons
                 listaPokemon = negocio.listar();
                 dgvPokemons.DataSource = listaPokemon;
                 dgvPokemons.Columns["UrlImagen"].Visible = false;
-                //listaPokemon[0] porque muestra el primer pokemon de la lista listaPokemon
-                CargarImagen(listaPokemon[0].UrlImagen);
+                dgvPokemons.Columns["Id"].Visible = false;
+                CargarImagen(listaPokemon[0].UrlImagen);//listaPokemon[0] porque muestra el primer pokemon de la lista listaPokemon
             }
             catch (Exception ex)
             {
@@ -66,6 +66,15 @@ namespace frmPokemons
         {
             frmAltaPokemon alta = new frmAltaPokemon();
             alta.ShowDialog();
+            Cargar();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Pokemon seleccionado;
+            seleccionado = (Pokemon)dgvPokemons.CurrentRow.DataBoundItem;
+            frmAltaPokemon modificar = new frmAltaPokemon(seleccionado);
+            modificar.ShowDialog();
             Cargar();
         }
     }

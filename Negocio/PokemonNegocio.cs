@@ -21,7 +21,7 @@ namespace Negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=POKEDEX_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select Numero, Nombre, P.Descripcion, Urlimagen, E.Descripcion as Tipo, D.Descripcion as Debilidad From POKEMONS P, ELEMENTOS E, ELEMENTOS D Where E.Id = P.IdTipo And D.Id = P.IdDebilidad\r\n";
+                comando.CommandText = "Select Numero, Nombre, P.Descripcion, UrlImagen, E.Descripcion Tipo, D.Descripcion Debilidad, P.IdTipo, P.IdDebilidad, P.Id From POKEMONS P, ELEMENTOS E, ELEMENTOS D Where E.Id = P.IdTipo And D.Id = P.IdDebilidad";
                 comando.Connection = conexion;
 
                 conexion.Open();
@@ -30,15 +30,19 @@ namespace Negocio
                 while (lector.Read())
                 {
                     Pokemon aux = new Pokemon();
+                    aux.Id = (int)lector["Id"];
                     aux.Numero = (int)lector["Numero"];
                     aux.Nombre = (string)lector["Nombre"];
                     aux.Descripcion = (string)lector["Descripcion"];
                     //Verifica si UrlImagen es un null, si es así no lo lee para que no se rompa el programa
                     if (!(lector["UrlImagen"] is DBNull))
                         aux.UrlImagen = (string)lector["UrlImagen"];
+
                     aux.Tipo = new Elemento();
+                    aux.Tipo.Id = (int)lector["IdTipo"];
                     aux.Tipo.Descripcion = (string)lector["Tipo"];
                     aux.Debilidad = new Elemento();
+                    aux.Debilidad.Id = (int)lector["IdDebilidad"];
                     aux.Debilidad.Descripcion = (string)lector["Debilidad"];
 
                     lista.Add(aux);
@@ -83,7 +87,29 @@ namespace Negocio
 
         public void Modificar(Pokemon modificar)
         {
+            AccesoDatos datos = new AccesoDatos();
 
+            try
+            {
+                datos.SetearConsulta("Update POKEMONS set Numero = @numero, Nombre = @nombre, Descripcion = @desc, UrlImagen = @img, IdTipo = @idTipo, IdDebilidad = @idDebilidad Where Id = @id");
+                datos.SetearParametro("@numero", modificar.Numero);
+                datos.SetearParametro("@nombre", modificar.Nombre);
+                datos.SetearParametro("@desc", modificar.Descripcion);
+                datos.SetearParametro("@img", modificar.UrlImagen);
+                datos.SetearParametro("@idTipo", modificar.Tipo.Id);
+                datos.SetearParametro("@idDebilidad", modificar.Debilidad.Id);
+                datos.SetearParametro("@id", modificar.Id);
+
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
     }
 }

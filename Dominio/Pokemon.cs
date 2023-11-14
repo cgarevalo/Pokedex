@@ -11,6 +11,7 @@ namespace Dominio
     {
         //El DisplayName es un anotations (se usa para elegir como queremos que se vean los nombres de las propiedades en la aplicación) van arriva de la propiedad que deseamos afectar
 
+        public int Id { get; set; }
         [DisplayName("Número")]
         public int Numero { get; set; }
         public string Nombre { get; set; }
