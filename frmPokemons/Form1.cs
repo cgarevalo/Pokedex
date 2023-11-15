@@ -28,8 +28,13 @@ namespace frmPokemons
 
         private void dgvPokemons_SelectionChanged(object sender, EventArgs e)
         {
-            Pokemon selecionado = (Pokemon)dgvPokemons.CurrentRow.DataBoundItem;
-            CargarImagen(selecionado.UrlImagen);
+            //ESto es un evento para cambiar de imagenes
+            if (dgvPokemons.CurrentRow != null)
+            {
+                Pokemon selecionado = (Pokemon)dgvPokemons.CurrentRow.DataBoundItem;
+                CargarImagen(selecionado.UrlImagen);
+
+            }
         }
 
         private void Cargar()
@@ -39,14 +44,19 @@ namespace frmPokemons
             {
                 listaPokemon = negocio.listar();
                 dgvPokemons.DataSource = listaPokemon;
-                dgvPokemons.Columns["UrlImagen"].Visible = false;
-                dgvPokemons.Columns["Id"].Visible = false;
+                OcultarColumnas();
                 CargarImagen(listaPokemon[0].UrlImagen);//listaPokemon[0] porque muestra el primer pokemon de la lista listaPokemon
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void OcultarColumnas()
+        {
+            dgvPokemons.Columns["UrlImagen"].Visible = false;
+            dgvPokemons.Columns["Id"].Visible = false;
         }
 
         private void CargarImagen(string imagen)
@@ -89,10 +99,10 @@ namespace frmPokemons
             Eliminar(true); //Tiene true como argumento (un booleano)
         }
 
-        //A logico se lo pone en false para que sea opcional agregar un bool como argumento
-        //Por eso, cuando los botones llaman al método, uno esta sin argumento y el otro tiene true como argumento
         private void Eliminar(bool logico = false)
         {
+            //A logico se lo pone en false para que sea opcional agregar un bool como argumento
+            //Por eso, cuando los botones llaman al método, uno esta sin argumento y el otro tiene true como argumento
             PokemonNegocio negocio = new PokemonNegocio();
             Pokemon seleccionado;
             try
@@ -121,6 +131,26 @@ namespace frmPokemons
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void btnFiltro_Click(object sender, EventArgs e)
+        {
+            List<Pokemon> listaFiltrada;
+            string filtro = txtFiltro.Text;      
+
+            if (filtro != "")
+            {
+                //Busca al pokemon escrito en el txtFiltro
+                listaFiltrada = listaPokemon.FindAll(p => p.Nombre.ToUpper().Contains(filtro.ToUpper()) || p.Tipo.Descripcion.ToUpper().Contains(filtro.ToUpper()));//Esto lo pasa a mayúsculas y busca coincidencias
+            }
+            else
+            {
+                listaFiltrada = listaPokemon;
+            }
+
+            dgvPokemons.DataSource = null;
+            dgvPokemons.DataSource = listaFiltrada;
+            OcultarColumnas();
         }
     }
 }
