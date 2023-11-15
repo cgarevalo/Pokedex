@@ -80,18 +80,40 @@ namespace frmPokemons
 
         private void btnEliminarFisico_Click(object sender, EventArgs e)
         {
+            Eliminar(); //No tiene argumento
+                        //Pero podría tener false como argumento y sería lo mismo
+        }
+
+        private void btnEliminarLogico_Click(object sender, EventArgs e)
+        {
+            Eliminar(true); //Tiene true como argumento (un booleano)
+        }
+
+        //A logico se lo pone en false para que sea opcional agregar un bool como argumento
+        //Por eso, cuando los botones llaman al método, uno esta sin argumento y el otro tiene true como argumento
+        private void Eliminar(bool logico = false)
+        {
             PokemonNegocio negocio = new PokemonNegocio();
             Pokemon seleccionado;
             try
             {                                             //pregunta              //titulo
                 DialogResult resultado = MessageBox.Show("¿Quiere eliminarlo?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning); //El MessageBoxIcon.Warning es opcional
-                                                                    //Solo muestra un icono
-                
+                                                                                                                                                //Solo muestra un icono
                 if (resultado == DialogResult.Yes)
                 {
                     seleccionado = (Pokemon)dgvPokemons.CurrentRow.DataBoundItem;
-                    negocio.Eliminar(seleccionado.Id);
+
+                    if (logico)
+                    {
+                    negocio.EliminarLogico(seleccionado.Id);
+                    }
+                    else
+                    {
+                        negocio.EliminarFisico(seleccionado.Id);
+                    }
+
                     Cargar();
+
                 }
 
             }
