@@ -135,8 +135,20 @@ namespace frmPokemons
 
         private void btnFiltro_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void txtFiltro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Evento KeyPress de txtFiltro
+            
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            //Evento TextChanged de txtFiltro
             List<Pokemon> listaFiltrada;
-            string filtro = txtFiltro.Text;      
+            string filtro = txtFiltro.Text;
 
             if (filtro != "")
             {
@@ -148,6 +160,7 @@ namespace frmPokemons
                 listaFiltrada = listaPokemon;
             }
 
+            //Actualiza el datagridview con la nueva lista
             dgvPokemons.DataSource = null;
             dgvPokemons.DataSource = listaFiltrada;
             OcultarColumnas();
