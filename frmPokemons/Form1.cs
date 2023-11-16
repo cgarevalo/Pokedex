@@ -24,6 +24,11 @@ namespace frmPokemons
         private void frmPokemons_Load(object sender, EventArgs e)
         {
             Cargar();
+
+            //Carga las opciones en cboCampo del filtro avanzado
+            cboCampo.Items.Add("Número");
+            cboCampo.Items.Add("Nombre");
+            cboCampo.Items.Add("Descripción");
         }
 
         private void dgvPokemons_SelectionChanged(object sender, EventArgs e)
@@ -135,7 +140,19 @@ namespace frmPokemons
 
         private void btnFiltro_Click(object sender, EventArgs e)
         {
-            
+            PokemonNegocio negocio = new PokemonNegocio();
+
+            try
+            {
+                string campo = cboCampo.SelectedItem.ToString();
+                string criterio = cboCriterio.SelectedItem.ToString();
+                string filtro = txtFiltroAvanzado.Text;
+                dgvPokemons.DataSource = negocio.Filtrar(campo, criterio, filtro);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void txtFiltro_KeyPress(object sender, KeyPressEventArgs e)
@@ -150,7 +167,7 @@ namespace frmPokemons
             List<Pokemon> listaFiltrada;
             string filtro = txtFiltro.Text;
 
-            if (filtro != "")
+            if (filtro.Length >= 2)
             {
                 //Busca al pokemon escrito en el txtFiltro
                 listaFiltrada = listaPokemon.FindAll(p => p.Nombre.ToUpper().Contains(filtro.ToUpper()) || p.Tipo.Descripcion.ToUpper().Contains(filtro.ToUpper()));//Esto lo pasa a mayúsculas y busca coincidencias
@@ -164,6 +181,26 @@ namespace frmPokemons
             dgvPokemons.DataSource = null;
             dgvPokemons.DataSource = listaFiltrada;
             OcultarColumnas();
+        }
+
+        private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // opcion contendrá la opción seleccionada en el cboCampo
+            string opcion = cboCampo.SelectedItem.ToString();
+            if(opcion == "Número")
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Mayor a");
+                cboCriterio.Items.Add("Menor a");
+                cboCriterio.Items.Add("Igual a");
+            }
+            else
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Comienza con");
+                cboCriterio.Items.Add("Termina con");
+                cboCriterio.Items.Add("Contiene");
+            }
         }
     }
 }
