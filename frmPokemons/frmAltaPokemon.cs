@@ -9,12 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Negocio;
+using System.IO;
+using System.Configuration; //Para poder acceder a la ruta de la carpeta, que agregamos en App.config donde se guardan las imagenes del boton + desde el explorador de archivos.
 
 namespace frmPokemons
 {
     public partial class frmAltaPokemon : Form
     {
         private Pokemon pokemon = null;
+        private OpenFileDialog archivo = null;
 
         public frmAltaPokemon()
         {
@@ -58,6 +61,12 @@ namespace frmPokemons
                 {
                     negocio.Agregar(pokemon);
                     MessageBox.Show("Agregado correctamente");
+                }
+
+                //Guarda imagen si la levantó localmente:
+                if (archivo != null && !(txtUrlImagen.Text.Contains("http")))
+                {
+                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["carpeta-imagen"] + archivo.SafeFileName);
                 }
 
                 Close();
@@ -126,6 +135,21 @@ namespace frmPokemons
             {
 
                 pbxPokemon.Load("https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg");
+            }
+        }
+
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+            archivo = new OpenFileDialog();
+            archivo.Filter = "jpg|*.jpg|png|*.png";
+
+            if (archivo.ShowDialog() == DialogResult.OK)
+            {
+                txtUrlImagen.Text = archivo.FileName;
+                CargarImagen(archivo.FileName);
+
+                //Guarda la imagen
+                //File.Copy(archivo.FileName, ConfigurationManager.AppSettings["carpeta-imagen"] + archivo.SafeFileName);
             }
         }
     }
