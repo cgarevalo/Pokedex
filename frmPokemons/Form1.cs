@@ -138,12 +138,58 @@ namespace frmPokemons
             }
         }
 
+        private bool ValidarFiltro()
+        {
+            if (cboCampo.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor, seleccione el campo para filtrar.");
+                return true;
+            }
+            if (cboCriterio.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor, seleccione el criterio para filtrar.");
+                return true;
+            }
+            if (cboCampo.SelectedItem.ToString() == "Número")
+            {
+                if (string.IsNullOrEmpty(txtFiltroAvanzado.Text))
+                {
+                    MessageBox.Show("Debes cargar el filtro con números...");
+                    return true;
+                }
+                if (!(SoloNumeros(txtFiltroAvanzado.Text)))
+                {
+                    MessageBox.Show("Solo números para filtrar por un campo numérico...");
+                    return true;
+                }
+
+            }
+
+            return false;
+
+        }
+
+        private bool SoloNumeros(string cadena)
+        {
+            foreach (char caracter in cadena)
+            {
+                if (!(char.IsNumber(caracter)))
+                    return false;
+            }
+            return true;
+        }
+
         private void btnFiltro_Click(object sender, EventArgs e)
         {
             PokemonNegocio negocio = new PokemonNegocio();
 
             try
             {
+                if (ValidarFiltro())
+                {
+                    return; //Con return detenemos la acción para que no siga y se rompa el programa
+                }
+
                 string campo = cboCampo.SelectedItem.ToString();
                 string criterio = cboCriterio.SelectedItem.ToString();
                 string filtro = txtFiltroAvanzado.Text;
